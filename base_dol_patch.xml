@@ -1,0 +1,44 @@
+// Remove Vanilla Colosseum Unlocks
+<memory offset="0x80139ec4" value="60000000" /> // nop
+<memory offset="0x80139f04" value="60000000" /> // nop
+<memory offset="0x80139f14" value="60000000" /> // nop
+<memory offset="0x80139f84" value="60000000" /> // nop
+<memory offset="0x80139fd4" value="60000000" /> // nop
+<memory offset="0x80139fe4" value="60000000" /> // nop
+<memory offset="0x8013a054" value="60000000" /> // nop
+<memory offset="0x8013a0a4" value="60000000" /> // nop
+
+// Properly Lock Gateway Colosseum
+<memory offset="0x8008f16c" value="3860002d" /> // li r3,0x2d
+<memory offset="0x8008f170" value="480d844d" /> // bl 0xd844c (GetCurrentSaveSlotFlag)
+<memory offset="0x8008f174" value="2c030000" /> // cmpwi r3,0x0
+<memory offset="0x8008f178" value="41820a78" /> // beq 0xa78 (0x8008fbf0)
+<memory offset="0x8008f17c" value="48386cd5" /> // bl 0x386cd4 (0x80415e50)
+<memory offset="0x80415e50" value="7fc3f378" /> // or r3,r30,r30
+<memory offset="0x80415e54" value="7fe4fb78" /> // or r4,r31,r31
+<memory offset="0x80415e58" value="38c10030" /> // addi r6,r1,0x30
+<memory offset="0x80415e5c" value="38a00006" /> // li r5,0x6
+// this is the stupidest way of doing this but I'm too tired to make anything better so fuck it we ball
+<memory offset="0x80415e60" value="4e800020" /> // blr
+<memory offset="0x8008f180" value="481c989d" /> // bl 0x1c989c (0x80258a14)
+<memory offset="0x8008f184" value="48386ce1" /> // bl 0x386ce0 (0x80415e64)
+<memory offset="0x80415e64" value="38810030" /> // addi r4,r1,0x30
+<memory offset="0x80415e68" value="38600001" /> // li r3,0x1
+<memory offset="0x80415e6c" value="4e800020" /> // blr
+
+// Properly Lock Main Street Colosseum
+<memory offset="0x8008f190" value="3860002e" /> // li r3,0x2e
+<memory offset="0x8008f194" value="480d8429" /> // bl 0xd8428 (GetCurrentSaveSlotFlag)
+<memory offset="0x8008f198" value="2c030000" /> // cmpwi r3,0x0
+<memory offset="0x8008f19c" value="41820a54" /> // beq 0xa54 (0x8008fbf0)
+<memory offset="0x8008f1a0" value="48386cd1" /> // bl 0x386cd0 (0x80415e70)
+<memory offset="0x80415e70" value="7fc3f378" /> // or r3,r30,r30
+<memory offset="0x80415e74" value="7fe4fb78" /> // or r4,r31,r31
+<memory offset="0x80415e78" value="38c10030" /> // addi r6,r1,0x30
+<memory offset="0x80415e7c" value="38a00006" /> // li r5,0x6
+<memory offset="0x80415e80" value="4e800020" /> // blr
+<memory offset="0x8008f1a4" value="481c9871" /> // bl 0x1c9870 (0x80258a14)
+<memory offset="0x8008f1a8" value="48386cdd" /> // bl 0x386cdc (0x80415e84)
+<memory offset="0x80415e84" value="38810030" /> // addi r4,r1,0x30
+<memory offset="0x80415e88" value="38600002" /> // li r3,0x2
+<memory offset="0x80415e8c" value="4e800020" /> // blr
