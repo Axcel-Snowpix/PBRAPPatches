@@ -1,3 +1,6 @@
+// Remove Starting Rental Pass Unlock
+<memory offset="0x800d2034" value="60000000" /> // nop
+
 // Add Function for Reading Rental Pass Check Values
 // Param r6: Pass ID
 // Returns the bit in r9, as well as comparison between r9 and 0
