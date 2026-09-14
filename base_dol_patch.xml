@@ -1,5 +1,5 @@
 // Zero Out Extra Bytes During Save File Creation
-<memory offset="0x80165d34" value="38a48533" /> // subi r5,r4,0x7acd
+<memory offset="0x80165d34" value="38a48534" /> // subi r5,r4,0x7acc
 
 // Remove Vanilla Colosseum Unlocks
 <memory offset="0x80139ec4" value="60000000" /> // nop

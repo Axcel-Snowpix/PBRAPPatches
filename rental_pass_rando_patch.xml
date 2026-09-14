@@ -1,0 +1,57 @@
+// Add Function for Reading Rental Pass Check Values
+// Param r6: Pass ID
+// Returns the bit in r9, as well as comparison between r9 and 0
+<memory offset="0x80415e90" value="7c050378" /> // mr r5,r0
+<memory offset="0x80415e94" value="9421fff0" /> // stwu r1,Stack[-0x10](r1)
+<memory offset="0x80415e98" value="7c0802a6" /> // mfspr r0,LR
+<memory offset="0x80415e9c" value="90010014" /> // stw r0,Stack[0x4](r1)
+<memory offset="0x80415ea0" value="38e6ffdb" /> // subi r7,r6,0x25
+<memory offset="0x80415ea4" value="7c681b78" /> // mr r8,r3
+<memory offset="0x80415ea8" value="7c8a2378" /> // mr r10,r4
+<memory offset="0x80415eac" value="4Bd4e33d" /> // bl -0x2b1cc4 (GetCurrentSaveSlot)
+<memory offset="0x80415eb0" value="3c630007" /> // addis r3,r3,0x7
+<memory offset="0x80415eb4" value="38638533" /> // addi r3,r3,-0x7acd
+<memory offset="0x80415eb8" value="88630000" /> // lbz r3,0x0(r3)
+<memory offset="0x80415ebc" value="7c693c30" /> // srw r9,r3,r7
+<memory offset="0x80415ec0" value="71290001" /> // andi r9,r9,0x1
+<memory offset="0x80415ec4" value="7d034378" /> // mr r3,r8
+<memory offset="0x80415ec8" value="7d445378" /> // mr r4,r10
+<memory offset="0x80415ecc" value="2c090000" /> // cmpwi r9,0x0
+<memory offset="0x80415ed0" value="80010014" /> // lwz r0,Stack[0x4](r1)
+<memory offset="0x80415ed4" value="7c0803a6" /> // mtspr LR,r0
+<memory offset="0x80415ed8" value="38210010" /> // addi r1,r1,0x10
+<memory offset="0x80415edc" value="7ca02b78" /> // mr r0,r5
+<memory offset="0x80415ee0" value="4e800020" /> // blr
+
+// Modify Check for How Many Rental Passes are in Gateway
+<memory offset="0x800e7e3c" value="9421fff0" /> // stwu r1,Stack[-0x10](r1)
+<memory offset="0x800e7e40" value="7d6802a6" /> // mfspr r11,LR
+<memory offset="0x800e7e44" value="91610014" /> // stw r11,Stack[0x4](r1)
+<memory offset="0x800e7e48" value="4832e09d" /> // bl 0x32e09c (0x80415ee4)
+<memory offset="0x80415ee4" value="38800006" /> // li r4,0x6
+<memory offset="0x80415ee8" value="38600000" /> // li r3,0x0
+<memory offset="0x80415eec" value="38c00025" /> // li r6,0x25
+<memory offset="0x80415ef0" value="7c8903a6" /> // mtspr CTR,r4
+<memory offset="0x80415ef4" value="4e800020" /> // blr
+<memory offset="0x800e7e4c" value="4832e045" /> // bl 0x32e044 (0x80415e90)
+<memory offset="0x800e7e50" value="40820024" /> // bne 0x24 (0x800e7e74)
+<memory offset="0x800e7e54" value="54c4063e" /> // rlwinm r4,r6,0x0,0x18,0x1f
+<memory offset="0x800e7e58" value="1c8406ec" /> // mulli r4,r4,0x6ec
+<memory offset="0x800e7e5c" value="7c802214" /> // add r4,r0,r4
+<memory offset="0x800e7e60" value="88a40545" /> // lbz r5,0x545(r4)
+<memory offset="0x800e7e7c" value="4832e07d" /> // bl 0x32e07c (0x80415ef8)
+<memory offset="0x80415ef8" value="81610014" /> // lwz r11,Stack[0x4](r1)
+<memory offset="0x80415efc" value="7d6803a6" /> // mtspr LR,r11
+<memory offset="0x80415f00" value="38210010" /> // addi r1,r1,0x10
+<memory offset="0x80415f04" value="4e800020" /> // blr
+
+// Modify Check for Which Passes Should Show Up in Gateway
+<memory offset="0x800c8b00" value="7c862378" /> // mr r6,r4
+<memory offset="0x800c8b04" value="4834d38d" /> // bl 0x34d38c (0x80415e90)
+
+// Modify Check for Whether the Borrow New Pass Menu Should be Skipped
+<memory offset="0x8008868c" value="480dbb5d" /> // bl 0xdbb5c (GetCurrentSaveSlot)
+<memory offset="0x80088690" value="3c630007" /> // addis r3,r3,0x7
+<memory offset="0x80088694" value="38638533" /> // addi r3,r3,-0x7acd
+<memory offset="0x80088698" value="88630000" /> // lbz r3,0x0(r3)
+<memory offset="0x8008869c" value="2c03003f" /> // cmpwi r3,0x3f
