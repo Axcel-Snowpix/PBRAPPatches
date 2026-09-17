@@ -58,3 +58,97 @@
 <memory offset="0x80088694" value="38638533" /> // addi r3,r3,-0x7acd
 <memory offset="0x80088698" value="88630000" /> // lbz r3,0x0(r3)
 <memory offset="0x8008869c" value="2c03003f" /> // cmpwi r3,0x3f
+
+// Add Function for Removing Rental Passes After Gateway if You Don't Own the Rental Pass
+<memory offset="0x80415f08" value="9421fff0" /> // stwu r1,Stack[-0x10](r1)
+<memory offset="0x80415f0c" value="7d6802a6" /> // mfspr r11,LR
+<memory offset="0x80415f10" value="91610014" /> // stw r11,Stack[0x4](r1)
+<memory offset="0x80415f14" value="38600280" /> // li r3,0x280
+<memory offset="0x80415f18" value="4bd516a5" /> // bl 0xffd516a4 (GetCurrentSaveSlotFlag)
+<memory offset="0x80415f1c" value="2c030000" /> // cmpwi r3,0x0
+<memory offset="0x80415f20" value="41820064" /> // beq 0x64 (0x80415f84)
+<memory offset="0x80415f24" value="4bd09535" /> // bl 0xffd09534 (GetSaveSlotField0x585ec)
+<memory offset="0x80415f28" value="7c7c1b78" /> // mr r28,r3
+<memory offset="0x80415f2c" value="3bc00025" /> // li r30,0x25
+<memory offset="0x80415f30" value="57c4063e" /> // rlwinm r4,r30,0x0,0x18,0x1f
+<memory offset="0x80415f34" value="38600000" /> // li r3,0x0
+<memory offset="0x80415f38" value="4bcd1db1" /> // bl 0xffcd1db0 (GetBattlePassFlag)
+<memory offset="0x80415f3c" value="881c40f0" /> // lbz r0,0x40f0(r28)
+<memory offset="0x80415f40" value="5463063e" /> // rlwinm r3,r3,0x0,0x18,0x1f
+<memory offset="0x80415f44" value="5400fe7e" /> // rlwinm r0,r0,0x1f,0x19,0x1f
+<memory offset="0x80415f48" value="7c001840" /> // cmplw r0,r3
+<memory offset="0x80415f4c" value="40820048" /> // bne 0x48 (0x80415f94)
+<memory offset="0x80415f50" value="38beffdb" /> // subi r5,r30,0x25
+<memory offset="0x80415f54" value="4bd4e295" /> // bl 0xffd4e294 (GetCurrentSaveSlot)
+<memory offset="0x80415f58" value="3c630007" /> // addis r3,r3,0x7
+<memory offset="0x80415f5c" value="38638534" /> // addi r3,r3,-0x7acc
+<memory offset="0x80415f60" value="88630000" /> // lbz r3,0x0(r3)
+<memory offset="0x80415f64" value="7c652c30" /> // srw r5,r3,r5
+<memory offset="0x80415f68" value="70a50001" /> // andi. r5,r5,0x1
+<memory offset="0x80415f6c" value="2c050001" /> // cmpwi r5,0x1
+<memory offset="0x80415f70" value="41820014" /> // beq 0x14 (0x80415f84)
+<memory offset="0x80415f74" value="57c5063e" /> // rlwinm r5,r30,0x0,0x18,0x1f
+<memory offset="0x80415f78" value="38600004" /> // li r3,0x4
+<memory offset="0x80415f7c" value="38800000" /> // li r4,0x0
+<memory offset="0x80415f80" value="4bcd1fa5" /> // bl 0xffcd1fa4 (SetBattlePassFlag)
+<memory offset="0x80415f84" value="81610014" /> // lwz r11,Stack[0x4](r1)
+<memory offset="0x80415f88" value="7d6803a6" /> // mtspr LR,r11
+<memory offset="0x80415f8c" value="38210010" /> // addi r1,r1,0x10
+<memory offset="0x80415f90" value="4e800020" /> // blr
+<memory offset="0x80415f94" value="3bde0001" /> // addi. r30,r30,0x1
+<memory offset="0x80415f98" value="281e002b" /> // cmplwi r30,0x2b
+<memory offset="0x80415f9c" value="4180ff94" /> // blt 0xffffff94 (0x80415f30)
+<memory offset="0x80415fa0" value="4bffffe4" /> // b 0xffffffe4 (0x80415f84)
+
+// Check Rental Pass Locations After Gateway Win
+<memory offset="0x801389e0" value="482dd5c5" /> // bl 0x2dd5c4 (0x80415fa4)
+<memory offset="0x80415fa4" value="9421fff0" /> // stwu r1,Stack[-0x10](r1)
+<memory offset="0x80415fa8" value="7d6802a6" /> // mfspr r11,LR
+<memory offset="0x80415fac" value="91610014" /> // stw r11,Stack[0x4](r1)
+<memory offset="0x80415fb0" value="38600280" /> // li r3,0x280
+<memory offset="0x80415fb4" value="4bd51609" /> // bl 0xffd51608 (GetCurrentSaveSlotFlag)
+<memory offset="0x80415fb8" value="2c030000" /> // cmpwi r3,0x0
+<memory offset="0x80415fbc" value="41820054" /> // beq 0x54 (0x80416010)
+<memory offset="0x80415fc0" value="4bd09499" /> // bl 0xffd09498 (GetSaveSlotField0x585ec)
+<memory offset="0x80415fc4" value="7c7c1b78" /> // mr r28,r3
+<memory offset="0x80415fc8" value="3bc00025" /> // li r30,0x25
+<memory offset="0x80415fcc" value="57c4063e" /> // rlwinm r4,r30,0x0,0x18,0x1f
+<memory offset="0x80415fd0" value="38600000" /> // li r3,0x0
+<memory offset="0x80415fd4" value="4bcd1d15" /> // bl 0xffcd1d14 (GetBattlePassFlag)
+<memory offset="0x80415fd8" value="881c40f0" /> // lbz r0,0x40f0(r28)
+<memory offset="0x80415fdc" value="5463063e" /> // rlwinm r3,r3,0x0,0x18,0x1f
+<memory offset="0x80415fe0" value="5400fe7e" /> // rlwinm r0,r0,0x1f,0x19,0x1f
+<memory offset="0x80415fe4" value="7c001840" /> // cmplw r0,r3
+<memory offset="0x80415fe8" value="4082004c" /> // bne 0x4c (0x80416034)
+<memory offset="0x80415fec" value="38beffdb" /> // subi r5,r30,0x25
+<memory offset="0x80415ff0" value="38800001" /> // li r4,0x1
+<memory offset="0x80415ff4" value="7c852830" /> // slw r5,r4,r5
+<memory offset="0x80415ff8" value="4bd4e1f1" /> // bl 0xffd4e1f0 (GetCurrentSaveSlot)
+<memory offset="0x80415ffc" value="3c630007" /> // addis r3,r3,0x7
+<memory offset="0x80416000" value="38638533" /> // addi r3,r3,-0x7acd
+<memory offset="0x80416004" value="88830000" /> // lbz r4,0x0(r3)
+<memory offset="0x80416008" value="7ca42a14" /> // add r5,r4,r5
+<memory offset="0x8041600c" value="98a30000" /> // stb r5,0x0(r3)
+<memory offset="0x80416010" value="38600280" /> // li r3,0x280
+<memory offset="0x80416014" value="38800000" /> // li r4,0x0
+<memory offset="0x80416018" value="38a00001" /> // li r5,0x1
+<memory offset="0x8041601c" value="4bd51451" /> // bl 0xffd51450 (SetSaveSlotFlag)
+<memory offset="0x80416020" value="3860000e" /> // li r3,0xe
+<memory offset="0x80416024" value="81610014" /> // lwz r11,Stack[0x4](r1)
+<memory offset="0x80416028" value="7d6803a6" /> // mtspr LR,r11
+<memory offset="0x8041602c" value="38210010" /> // addi r1,r1,0x10
+<memory offset="0x80416030" value="4e800020" /> // blr
+<memory offset="0x80416034" value="3bde0001" /> // addi. r30,r30,0x1
+<memory offset="0x80416038" value="281e002b" /> // cmplwi r30,0x2b
+<memory offset="0x8041603c" value="4180ff90" /> // blt 0xffffff90 (0x80415fcc)
+<memory offset="0x80416040" value="4bffffd0" /> // b 0xffffffd0 (0x80416010)
+
+// Remove Rental Pass After Winning at Gateway Using Above Function
+<memory offset="0x8010b9b0" value="4830a559" /> // bl 0x30a558 (0x80415f08)
+<memory offset="0x8010baf8" value="4830a411" /> // bl 0x30a410 (0x80415f08)
+
+// Modify Vanilla Rental Pass Removal
+<memory offset="0x8010b9d0" value="4830a539" /> // bl 0x30a538 (0x80415f08)
+<memory offset="0x8010b9d4" value="48000054" /> // b 0x54 (0x8010ba28)
+<memory offset="0x8010ba6c" value="4830a49d" /> // bl 0x30a49c (0x80415f08)
+<memory offset="0x8010ba70" value="48000054" /> // b 0x54 (0x8010bac4)

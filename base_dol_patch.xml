@@ -1,5 +1,8 @@
+// Remove Anti Modding Check
+<memory offset="0x8022e1e4" value="48000100" /> b 0x100
+
 // Zero Out Extra Bytes During Save File Creation
-<memory offset="0x80165d34" value="38a48534" /> // subi r5,r4,0x7acc
+<memory offset="0x80165d34" value="38a48535" /> // subi r5,r4,0x7acb
 
 // Remove Vanilla Colosseum Unlocks
 <memory offset="0x80139ec4" value="60000000" /> // nop
