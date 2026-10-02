@@ -48,3 +48,10 @@
 <memory offset="0x80415e84" value="38810030" /> // addi r4,r1,0x30
 <memory offset="0x80415e88" value="38600002" /> // li r3,0x2
 <memory offset="0x80415e8c" value="4e800020" /> // blr
+
+// Change Default Cursor Position When Entering the Colosseum Battle Menu
+<memory offset="0x80084ddc" value="3800001e" /> // li r0,0x1e
+<memory offset="0x80084de4" value="48391285" /> // bl 0x391284 (0x80416068)
+<memory offset="0x80416068" value="980d9a0c" /> // stb r0,-0x65f4(r13) (DAT_8062700c)
+<memory offset="0x8041606c" value="38000002" /> // li r0,0x2
+<memory offset="0x80416070" value="4e800020" /> // blr
