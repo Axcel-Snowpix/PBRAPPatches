@@ -127,7 +127,7 @@
 <memory offset="0x80415ffc" value="3c630007" /> // addis r3,r3,0x7
 <memory offset="0x80416000" value="38638533" /> // addi r3,r3,-0x7acd
 <memory offset="0x80416004" value="88830000" /> // lbz r4,0x0(r3)
-<memory offset="0x80416008" value="7ca42a14" /> // add r5,r4,r5
+<memory offset="0x80416008" value="7c852b78" /> // or r5,r4,r5
 <memory offset="0x8041600c" value="98a30000" /> // stb r5,0x0(r3)
 <memory offset="0x80416010" value="38600280" /> // li r3,0x280
 <memory offset="0x80416014" value="38800000" /> // li r4,0x0
