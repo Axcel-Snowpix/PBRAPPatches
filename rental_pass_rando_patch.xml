@@ -4,7 +4,7 @@
 // Add Function for Reading Rental Pass Check Values
 // Param r6: Pass ID
 // Returns the bit in r9, as well as comparison between r9 and 0
-<memory offset="0x80415e90" value="7c050378" /> // mr r5,r0
+<memory offset="0x80415e90" value="7c0b0378" /> // mr r11,r0
 <memory offset="0x80415e94" value="9421fff0" /> // stwu r1,Stack[-0x10](r1)
 <memory offset="0x80415e98" value="7c0802a6" /> // mfspr r0,LR
 <memory offset="0x80415e9c" value="90010014" /> // stw r0,Stack[0x4](r1)
@@ -23,7 +23,7 @@
 <memory offset="0x80415ed0" value="80010014" /> // lwz r0,Stack[0x4](r1)
 <memory offset="0x80415ed4" value="7c0803a6" /> // mtspr LR,r0
 <memory offset="0x80415ed8" value="38210010" /> // addi r1,r1,0x10
-<memory offset="0x80415edc" value="7ca02b78" /> // mr r0,r5
+<memory offset="0x80415edc" value="7d605b78" /> // mr r0,r11
 <memory offset="0x80415ee0" value="4e800020" /> // blr
 
 // Modify Check for How Many Rental Passes are in Gateway
