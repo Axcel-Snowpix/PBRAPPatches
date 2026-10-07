@@ -60,36 +60,37 @@
 // Leave A Breadcrumb When Making A Save To Prevent Reading/Writing From/To A
 // Vanilla Save (WIP)
 // 33 opcodes of space available
-// stwu   r1,-0x10(r1)
+// void InitSaveSlot(int save_slot_idx)
+// stwu   r1,-0x10(r1) // Allocate Stack
 // mfspr  r0,LR
-// stw    r0,0x14(r1)
+// stw    r0,0x14(r1) // Save LR
 // stw    r31,0xC(r1)
 // stw    r30,0x8(r1)
 // or     r30,r3,r3
-// bl     0x801641B8 // GetSaveSlot(int save_slot_idx)
+// bl     0x801641B8 // GetSaveSlot(save_slot_idx)
 // lis    r4,0x7
-// or     r31,r3,r3
-// subi   r5,r4,0x6000 // (modified)
-// lis    r6,0x4150    // (new) AP
-// ori    r6,r6,0x4252 // (new) BR
-// add    r7,r5,r31    // (new)
-// stw    r6,-0x6F00(r7) // (new) store APBR at save_slot_ptr + 0x69000
+// subi   r5,r4,0x6000
+// add    r31,r3,r5 // (new), save_slot_ptr + 0x6A000
 // li     r4,0x0
 // bl     0x80004104 // FillRange(save_slot_ptr, 0, 0x6A000)
+// lis    r4,0x4150    // (new) AP
+// ori    r5,r4,0x4252 // (new) BR
+// stw    r5,-0x2000(r31) // (new) save_slot_ptr + 0x69000 = APBR
 // lwz    r0,0x0(r31)
 // lfd    f0,-0x7060(r2) // INITIAL_PLAY_TIME (float, 0.0)
 // rlwinm r0,r0,0x0,0x1,0x1f
 // stw    r0,0x0(r31)
 // stfd   f0,0x8(r31)
-// bl     0x800E6D58 // InitAllBattlePasses(save_slot_ptr), memset puts save_slot_ptr into r3 (99% sure, but double check, if not or r3,r31,r31)
-// or     r3,r31,r31
-// bl     0x80166B84
+// bl     0x800E6D58 // InitAllBattlePasses(save_slot_ptr), save_slot_ptr currenrtly from FillRange return
+// or     r3,r30,r30 // (changed)
+// bl     0x801641B8 // (new) GetSaveSlot(save_slot_idx)
+// bl     0x80166B84 // FUN_0x80166B84(save_slot_ptr)
 // or     r3,r30,r30
 // bl     0x80167348 // InitSaveSlotFlags(save_slot_idx)
-// lwz    r0,0x14    // Get LR Value
-// lwz    r31,0xC    // Restore Volatile Register
-// lwz    r30,0x8    // Restore Volatile Register
+// bl     init_helper
+// lwz    r0,0x14(r1)    // Get LR Value
+// lwz    r31,0xC(r1)    // Restore Nonvolatile Register
+// lwz    r30,0x8(r1)    // Restore Nonvolatile Register
 // mtspr  LR,r0      // Restore LR
 // addi   r1,r1,0x10 // Restore Stack
 // blr
-// nop
