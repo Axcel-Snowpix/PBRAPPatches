@@ -82,15 +82,15 @@
 // stw    r0,0x0(r31)
 // stfd   f0,0x8(r31)
 // bl     0x800E6D58 // InitAllBattlePasses(save_slot_ptr), save_slot_ptr currenrtly from FillRange return
+// or     r3,r30,r30
+// bl     0x80167348 // InitSaveSlotFlags(save_slot_idx)
 // or     r3,r30,r30 // (changed)
 // bl     0x801641B8 // (new) GetSaveSlot(save_slot_idx)
 // bl     0x80166B84 // FUN_0x80166B84(save_slot_ptr)
-// or     r3,r30,r30
-// bl     0x80167348 // InitSaveSlotFlags(save_slot_idx)
-// bl     init_helper
 // lwz    r0,0x14(r1)    // Get LR Value
 // lwz    r31,0xC(r1)    // Restore Nonvolatile Register
 // lwz    r30,0x8(r1)    // Restore Nonvolatile Register
 // mtspr  LR,r0      // Restore LR
 // addi   r1,r1,0x10 // Restore Stack
 // blr
+// nop
