@@ -1,6 +1,33 @@
-/Patched Dump
-/Patched Files
-/PBR Dump
+# Build/Working Directories
+/PBR_EXTRACT
+/PBR_PATCHED
+/BSDIFFS
+
+# Combined Patch File
+*ap_pbr_patch.xml
+
+# Wii Game Dump Formats
 *.iso
+*.rvz
+*.wia
+*.gcz
+
+# Wii/PBR Common Formats
+*.dol
 *.fsys
-wit commands.txt
+*.brstm
+*.brsar
+*.narc
+*.FNT
+*.MSG
+*.arc
+*.tpl
+*.sdr
+*.gpd
+*.srl
+*.f3d
+*.wad
+*header.bin
+*region.bin
+*boot.bin
+*fst.bin
