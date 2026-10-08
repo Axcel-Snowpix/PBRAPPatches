@@ -53,4 +53,4 @@ patched_iso: $(ISO_OUT)
 
 .PHONY: clean
 clean:
-	rm -rf $(ISO_EXTRACT_DIR) $(ISO_PATCHED_DIR) $(XML_PATCH_DOL) $(BSDIFF_OUT_DIR)
+	rm -rf $(ISO_EXTRACT_DIR) $(ISO_PATCHED_DIR) $(BSDIFF_OUT_DIR) $(XML_PATCH_DOL) $(ISO_OUT)
