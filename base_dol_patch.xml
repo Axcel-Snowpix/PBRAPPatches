@@ -1,3 +1,5 @@
+// Latest Available Address: 0x804160ac
+
 // Remove Anti Modding Check
 <memory offset="0x8022e1e4" value="48000100" /> b 0x100
 
@@ -14,7 +16,7 @@
 <memory offset="0x8013a054" value="60000000" /> // nop
 <memory offset="0x8013a0a4" value="60000000" /> // nop
 
-// Properly Lock Gateway Colosseum
+// Lock Gateway Colosseum from Being Selected With the Pointer
 <memory offset="0x8008f16c" value="3860002d" /> // li r3,0x2d
 <memory offset="0x8008f170" value="480d844d" /> // bl 0xd844c (GetCurrentSaveSlotFlag)
 <memory offset="0x8008f174" value="2c030000" /> // cmpwi r3,0x0
@@ -32,7 +34,19 @@
 <memory offset="0x80415e68" value="38600001" /> // li r3,0x1
 <memory offset="0x80415e6c" value="4e800020" /> // blr
 
-// Properly Lock Main Street Colosseum
+// Lock Gateway Colosseum from Being Hovered Over with the D-Pad
+<memory offset="0x8008573c" value="3860002d" /> // li r3,0x2d
+<memory offset="0x80085740" value="480e1e7d" /> // bl 0xe1e7c (GetCurrentSaveSlotFlag)
+<memory offset="0x80085744" value="48390931" /> // bl 0x390930 (0x80416074)
+<memory offset="0x80416074" value="2c030000" /> // cmpwi r3,0x0
+<memory offset="0x80416078" value="41820014" /> // beq 0x14 (0x8041608c)
+<memory offset="0x8041607c" value="a87f00c0" /> // lha r3,0xc0(r31) (DAT_804505f0)
+<memory offset="0x80416080" value="38800000" /> // li r4,0x0
+<memory offset="0x80416084" value="38a00000" /> // li r5,0x0
+<memory offset="0x80416088" value="4e800020" /> // blr
+<memory offset="0x8041608c" value="4bc75364" /> // b 0xffc75364 (8008b3f0)
+
+// Lock Main Street Colosseum from Being Selected With the Pointer
 <memory offset="0x8008f190" value="3860002e" /> // li r3,0x2e
 <memory offset="0x8008f194" value="480d8429" /> // bl 0xd8428 (GetCurrentSaveSlotFlag)
 <memory offset="0x8008f198" value="2c030000" /> // cmpwi r3,0x0
@@ -48,6 +62,22 @@
 <memory offset="0x80415e84" value="38810030" /> // addi r4,r1,0x30
 <memory offset="0x80415e88" value="38600002" /> // li r3,0x2
 <memory offset="0x80415e8c" value="4e800020" /> // blr
+
+// Lock Main Street Colosseum from Being Hovered Over with the D-Pad
+<memory offset="0x80085778" value="3860002e" /> // li r3,0x2e
+<memory offset="0x8008577c" value="480e1e41" /> // bl 0xe1e40 (GetCurrentSaveSlotFlag 801675bc)
+<memory offset="0x80085780" value="48390911" /> // bl 0x390910 (0x80416090)
+<memory offset="0x80416090" value="2c030000" /> // cmpwi r3,0x0
+<memory offset="0x80416094" value="41820014" /> // beq 0x14 (0x804160a8)
+<memory offset="0x80416098" value="a87f00c0" /> // lha r3,0xc0(r31) (DAT_804505f0)
+<memory offset="0x8041609c" value="38800001" /> // li r4,0x1
+<memory offset="0x804160a0" value="38a00000" /> // li r5,0x0
+<memory offset="0x804160a4" value="4e800020" /> // blr
+<memory offset="0x804160a8" value="4bc75348" /> // b 0xffc75348 (0x8008b3f0)
+
+// Lock Gateway and Main Street Colosseums from Being Selected With the D-Pad
+<memory offset="0x800852ac" value="60000000" /> // nop
+<memory offset="0x800852b4" value="38800000" /> // li r4,0x0
 
 // Change Default Cursor Position When Entering the Colosseum Battle Menu
 <memory offset="0x80084ddc" value="3800001e" /> // li r0,0x1e
