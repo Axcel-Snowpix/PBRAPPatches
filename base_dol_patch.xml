@@ -6,6 +6,10 @@
 // Zero Out Extra Bytes During Save File Creation
 <memory offset="0x80165d34" value="38a48535" /> // subi r5,r4,0x7acb
 
+// Fix Black Screen Effects
+<memory offset="0x80244a94" value="39080000" /> // addi r8, r8, 0
+<memory offset="0x80244a9c" value="38030000" /> // addi r0, r3, 0
+
 // Remove Vanilla Colosseum Unlocks
 <memory offset="0x80139ec4" value="60000000" /> // nop
 <memory offset="0x80139f04" value="60000000" /> // nop
