@@ -92,39 +92,38 @@
 
 // Rewrite InitSaveSlot(int32_t save_slot_idx) To Zero Unused Area Of Save And
 // Leave A Breadcrumb When Making A Save To Prevent Reading/Writing From/To A
-// Vanilla Save (WIP)
-// 33 opcodes of space available
-// void InitSaveSlot(int save_slot_idx)
-// stwu   r1,-0x10(r1) // Allocate Stack
-// mfspr  r0,LR
-// stw    r0,0x14(r1) // Save LR
-// stw    r31,0xC(r1)
-// stw    r30,0x8(r1)
-// or     r30,r3,r3
-// bl     0x801641B8 // GetSaveSlot(save_slot_idx)
-// lis    r4,0x7
-// subi   r5,r4,0x6000
-// add    r31,r3,r5 // (new), save_slot_ptr + 0x6A000
-// li     r4,0x0
-// bl     0x80004104 // FillRange(save_slot_ptr, 0, 0x6A000)
-// lis    r4,0x4150    // (new) AP
-// ori    r5,r4,0x4252 // (new) BR
-// stw    r5,-0x2000(r31) // (new) save_slot_ptr + 0x69000 = APBR
-// lwz    r0,0x0(r31)
-// lfd    f0,-0x7060(r2) // INITIAL_PLAY_TIME (float, 0.0)
-// rlwinm r0,r0,0x0,0x1,0x1f
-// stw    r0,0x0(r31)
-// stfd   f0,0x8(r31)
-// bl     0x800E6D58 // InitAllBattlePasses(save_slot_ptr), save_slot_ptr currenrtly from FillRange return
-// or     r3,r30,r30
-// bl     0x80167348 // InitSaveSlotFlags(save_slot_idx)
-// or     r3,r30,r30 // (changed)
-// bl     0x801641B8 // (new) GetSaveSlot(save_slot_idx)
-// bl     0x80166B84 // FUN_0x80166B84(save_slot_ptr)
-// lwz    r0,0x14(r1)    // Get LR Value
-// lwz    r31,0xC(r1)    // Restore Nonvolatile Register
-// lwz    r30,0x8(r1)    // Restore Nonvolatile Register
-// mtspr  LR,r0      // Restore LR
-// addi   r1,r1,0x10 // Restore Stack
-// blr
-// nop
+// Vanilla Save
+// void InitSaveSlot(int save_slot_idx) // 33 opcodes long
+<memory offset="0x80165d10" value="9421FFF0" /> // stwu   r1,-0x10(r1) # Allocate Stack
+<memory offset="0x80165d14" value="7C0802A6" /> // mfspr  r0,LR
+<memory offset="0x80165d18" value="90010014" /> // stw    r0,0x14(r1) # Save LR
+<memory offset="0x80165d1C" value="93E1000C" /> // stw    r31,0xC(r1) # Save Volatile Register
+<memory offset="0x80165d20" value="93C10008" /> // stw    r30,0x8(r1) # Save Volatile Register
+<memory offset="0x80165d24" value="7C7E1B78" /> // or     r30,r3,r3
+<memory offset="0x80165d28" value="4BFFE491" /> // bl     0x801641B8 # GetSaveSlot(save_slot_idx)
+<memory offset="0x80165d2C" value="3C800007" /> // lis    r4,0x7
+<memory offset="0x80165d30" value="38A4A000" /> // subi   r5,r4,0x6000
+<memory offset="0x80165d34" value="7FE32A14" /> // add    r31,r3,r5 # (new), save_slot_ptr + 0x6A000
+<memory offset="0x80165d38" value="38800000" /> // li     r4,0x0
+<memory offset="0x80165d3c" value="4BE9E3C9" /> // bl     0x80004104 # FillRange(save_slot_ptr, 0, 0x6A000)
+<memory offset="0x80165d40" value="3C804150" /> // lis    r4,0x4150    # (new) AP
+<memory offset="0x80165d44" value="60854252" /> // ori    r5,r4,0x4252 # (new) BR
+<memory offset="0x80165d48" value="90BFF000" /> // stw    r5,-0x1000(r31) # (new) save_slot_ptr + 0x69000 = APBR
+<memory offset="0x80165d4c" value="801F0000" /> // lwz    r0,0x0(r31)
+<memory offset="0x80165d50" value="C8028FA0" /> // lfd    f0,-0x7060(r2) # INITIAL_PLAY_TIME (float, 0.0)
+<memory offset="0x80165d54" value="5400007E" /> // rlwinm r0,r0,0x0,0x1,0x1f
+<memory offset="0x80165d58" value="901F0000" /> // stw    r0,0x0(r31)
+<memory offset="0x80165d5c" value="D81F0008" /> // stfd   f0,0x8(r31)
+<memory offset="0x80165d60" value="4BF80FF9" /> // bl     0x800E6D58 # InitAllBattlePasses(save_slot_ptr), save_slot_ptr currenrtly from FillRange return
+<memory offset="0x80165d64" value="7FC3F378" /> // or     r3,r30,r30
+<memory offset="0x80165d68" value="480015E1" /> // bl     0x80167348 # InitSaveSlotFlags(save_slot_idx)
+<memory offset="0x80165d6C" value="7FC3F378" /> // or     r3,r30,r30 # (changed)
+<memory offset="0x80165d70" value="4BFFE449" /> // bl     0x801641B8 # (new) GetSaveSlot(save_slot_idx)
+<memory offset="0x80165d74" value="48000E11" /> // bl     0x80166B84 # FUN_0x80166B84(save_slot_ptr)
+<memory offset="0x80165d78" value="80010014" /> // lwz    r0,0x14(r1) # Get LR Value
+<memory offset="0x80165d7c" value="83E1000C" /> // lwz    r31,0xC(r1) # Restore Nonvolatile Register
+<memory offset="0x80165d80" value="83C10008" /> // lwz    r30,0x8(r1) # Restore Nonvolatile Register
+<memory offset="0x80165d84" value="7C0803A6" /> // mtspr  LR,r0       # Restore LR
+<memory offset="0x80165d88" value="38210010" /> // addi   r1,r1,0x10  # Restore Stack
+<memory offset="0x80165d8C" value="4E800020" /> // blr
+<memory offset="0x80165d90" value="60000000" /> // nop
