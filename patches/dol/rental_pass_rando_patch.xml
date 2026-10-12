@@ -13,7 +13,7 @@
 <memory offset="0x80415ea8" value="7c8a2378" /> // mr r10,r4
 <memory offset="0x80415eac" value="4Bd4e33d" /> // bl -0x2b1cc4 (GetCurrentSaveSlot)
 <memory offset="0x80415eb0" value="3c630007" /> // addis r3,r3,0x7
-<memory offset="0x80415eb4" value="38638533" /> // addi r3,r3,-0x7acd
+<memory offset="0x80415eb4" value="38639021" /> // subi r3,r3,0x6fdf
 <memory offset="0x80415eb8" value="88630000" /> // lbz r3,0x0(r3)
 <memory offset="0x80415ebc" value="7c693c30" /> // srw r9,r3,r7
 <memory offset="0x80415ec0" value="71290001" /> // andi r9,r9,0x1
@@ -81,7 +81,7 @@
 <memory offset="0x80415f50" value="38beffdb" /> // subi r5,r30,0x25
 <memory offset="0x80415f54" value="4bd4e295" /> // bl 0xffd4e294 (GetCurrentSaveSlot)
 <memory offset="0x80415f58" value="3c630007" /> // addis r3,r3,0x7
-<memory offset="0x80415f5c" value="38638534" /> // addi r3,r3,-0x7acc
+<memory offset="0x80415f5c" value="38639022" /> // subi r3,r3,0x6fde
 <memory offset="0x80415f60" value="88630000" /> // lbz r3,0x0(r3)
 <memory offset="0x80415f64" value="7c652c30" /> // srw r5,r3,r5
 <memory offset="0x80415f68" value="70a50001" /> // andi. r5,r5,0x1
@@ -125,7 +125,7 @@
 <memory offset="0x80415ff4" value="7c852830" /> // slw r5,r4,r5
 <memory offset="0x80415ff8" value="4bd4e1f1" /> // bl 0xffd4e1f0 (GetCurrentSaveSlot)
 <memory offset="0x80415ffc" value="3c630007" /> // addis r3,r3,0x7
-<memory offset="0x80416000" value="38638533" /> // addi r3,r3,-0x7acd
+<memory offset="0x80416000" value="38639021" /> // subi r3,r3,0x6fdf
 <memory offset="0x80416004" value="88830000" /> // lbz r4,0x0(r3)
 <memory offset="0x80416008" value="7c852b78" /> // or r5,r4,r5
 <memory offset="0x8041600c" value="98a30000" /> // stb r5,0x0(r3)
