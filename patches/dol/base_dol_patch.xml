@@ -125,14 +125,85 @@
 <memory offset="0x80165d8C" value="4E800020" /> // blr
 <memory offset="0x80165d90" value="60000000" /> // nop
 
-// WIP Draft
 // Rewrite The Logic Handling The Colosseum DPAD Selection Menu To Prevent
 // Being Able to Select Locked Colosseums or Being Unable To Select Unlocked
-// Colosseums 0x80084f20-0x800852CC, 0x3AC bytes or 235 instructions
-// Yes, this could be improved for instruction space by hardcoding the
-// flag offsets and the bitmask to grab them with a single load; however,
-// there is plenty of space, this is more readable, and it works if the
-// size of other flags is channged. Not that there's a reason to do so.
+// Colosseums 0x80084f20-0x800852CC, 0x3AC bytes or 235 instructions Of Space
+// For Original Code
+<memory offset="0x80084F20" value="38000005" /> // li    r0,0x5
+<memory offset="0x80084F24" value="3BA0002D" /> // li    r29,0x2d
+<memory offset="0x80084F28" value="B00D99E2" /> // sth   r0,-0x661e(r13)
+<memory offset="0x80084F2C" value="3B600000" /> // li    r27,0x0
+flag_cumulate_loop:
+<memory offset="0x80084f30" value="7FA3EB78" /> // or    r3,r29,r29
+<memory offset="0x80084f34" value="480E2689" /> // bl    0xE2688 #GetCurrentSaveSlotFlag (0x801675bc)
+<memory offset="0x80084f38" value="7F7B1A14" /> // add   r27,r27,r3
+<memory offset="0x80084f3C" value="3BBD0001" /> // addi  r29,r29,0x1
+<memory offset="0x80084f40" value="2C1D0036" /> // cmpwi r29,0x36
+<memory offset="0x80084f44" value="4081FFEC" /> // ble flag_cumulate_loop
+<memory offset="0x80084f48" value="2C1B000A" /> // cmpwi r27,0xA
+<memory offset="0x80084f4C" value="4180002C" /> // blt build_custom_layout
+<memory offset="0x80084f50" value="387C0000" /> // addi  r3,r28,0x0
+<memory offset="0x80084f54" value="4BFFFD59" /> // bl    -0x2A8 #SetGroupButtonDPadMapping (0x80084cac)
+<memory offset="0x80084f58" value="3860001E" /> // li    r3,0x1E
+<memory offset="0x80084f5C" value="38800006" /> // li    r4,0x6
+<memory offset="0x80084f60" value="38A00000" /> // li    r5,0x0
+<memory offset="0x80084f64" value="38C00000" /> // li    r6,0x0
+<memory offset="0x80084f68" value="38E00000" /> // li    r7,0x0
+<memory offset="0x80084f6C" value="39000000" /> // li    r8,0x0
+<memory offset="0x80084f70" value="4BFD65D9" /> // bl    -0x29A28 #SetButtonDPadMapping (0x8005b548)
+<memory offset="0x80084f74" value="4800647C" /> // b     0x647C # (0x8008b3f0)
+build_custom_layout:
+<memory offset="0x80084f78" value="3B600000" /> // li    r27,0x0 # iterator
+<memory offset="0x80084f7C" value="3B800000" /> // li    r28,0x0 # previous, previous
+<memory offset="0x80084f80" value="3BA00000" /> // li    r29,0x0 # previous
+<memory offset="0x80084f84" value="3BC00000" /> // li    r30,0x0 # last
+build_dpad_layout_loop:  
+<memory offset="0x80084f88" value="3C808008" /> // lis   r4,0x8008
+<memory offset="0x80084f8C" value="38A052C0" /> // li    r5,0x52c0
+<memory offset="0x80084f90" value="7C862B78" /> // or    r6,r4,r5
+<memory offset="0x80084f94" value="7CC6DA14" /> // add   r6,r6,r27
+<memory offset="0x80084f98" value="88660000" /> // lbz   r3,0x0(r6)
+<memory offset="0x80084f9C" value="7C7F1B78" /> // or    r31,r3,r3
+<memory offset="0x80084fA0" value="38600001" /> // bl    0xE261C #0x7C #GetCurrentSaveSlotFlag (0x801675bc)
+<memory offset="0x80084fA4" value="2C030000" /> // cmpwi r3,0x0 #0x80
+<memory offset="0x80084fA8" value="41820034" /> // beq   build_dpad_layout_loop_iter
+<memory offset="0x80084fAC" value="3BDFFFD4" /> // subi  r30,r31,0x2C
+<memory offset="0x80084fB0" value="2C1D0000" /> // cmpwi r29,0x0
+<memory offset="0x80084fB4" value="41820024" /> // beq   build_dpad_layout_first_found_iter
+<memory offset="0x80084fb8" value="7FA3EB78" /> // or    r3,r29,r29
+<memory offset="0x80084fbc" value="38800000" /> // li    r4,0x0
+<memory offset="0x80084fc0" value="7F85E378" /> // or    r5,r28,r28
+<memory offset="0x80084fc4" value="7FC6F378" /> // or    r6,r30,r30
+<memory offset="0x80084fc8" value="38E0001E" /> // li    r7,0x1E
+<memory offset="0x80084fcc" value="39000000" /> // li    r8,0x0
+<memory offset="0x80084fd0" value="4BFD6579" /> // bl    -0x29A88 #SetButtonDPadMapping (0x8005b548)
+<memory offset="0x80084fd4" value="7FBCEB78" /> // or    r28,r29,r29
+build_dpad_layout_first_found_iter:
+<memory offset="0x80084fd8" value="7FDDF378" /> // or    r29,r30,r30
+build_dpad_layout_loop_iter:
+<memory offset="0x80084fdc" value="3B7B0001" /> // addi  r27,r27,0x1
+<memory offset="0x80084fe0" value="2C1B000A" /> // cmpwi r27,0xA
+<memory offset="0x80084fe4" value="4180FFA4" /> // blt   build_dpad_layout_loop #0xC0
+<memory offset="0x80084fe8" value="7FC3F378" /> // or    r3,r30,r30
+<memory offset="0x80084fec" value="38800000" /> // li    r4,0x0
+<memory offset="0x80084ff0" value="7F85E378" /> // or    r5,r28,r28
+<memory offset="0x80084ff4" value="38C00000" /> // li    r6,0x0
+<memory offset="0x80084ff8" value="38E0001E" /> // li    r7,0x1E
+<memory offset="0x80084ffc" value="4BFD654D" /> // bl    -0x29AB4 #SetButtonDPadMapping (0x8005b548)
+<memory offset="0x80085000" value="3860001E" /> // li    r3,0x1E
+<memory offset="0x80085004" value="7FC4F378" /> // or    r4,r30,r30
+<memory offset="0x80085008" value="38A00000" /> // li    r5,0x0
+<memory offset="0x8008500c" value="38C00000" /> // li    r6,0x0
+<memory offset="0x80085010" value="38E00000" /> // li    r7,0x0
+<memory offset="0x80085014" value="4BFD6535" /> // bl    -0x29ACC #SetButtonDPadMapping (0x8005b548)
+<memory offset="0x80085018" value="480063D8" /> // b     0x63D8 # (0x8008b3f0)
+
+// Empty Space
+
+// List of Colosseum Flags In Order Left To Right
+<memory offset="0x800852C0" value="3435302f" /> // 34, 35, 30, 2f
+<memory offset="0x800852C4" value="2e362d31" /> // 2e, 36, 2d, 31
+<memory offset="0x800852C8" value="32330000" /> // 32, 33, XX, XX
 // Order Of Colosseums Left To Right:
 // Courtyard (0x34)
 // Sunset (0x35)
@@ -143,78 +214,4 @@
 // Gateway (0x2D)
 // Crystal (0x31)
 // Sunny Park (0x32)
-// Magma (0x33)
-// li    r0,0x5 # original instruction
-// li    r29,#0x2d 
-// sth   r0,-0x661e(r13) # original instruction
-// li    r27,#0x0
-// flag_cumulate_loop:
-// or    r3,r29,r29
-// bl    GetCurrentSaveSlotFlag
-// add   r27,r27,r3
-// cmpwi r29,0x36
-// addi r29,r29,#0x1 # iter
-// ble flag_cumulate_loop
-// cmpwi r27,0xA
-// blt build_custom_layout
-// addi r3,r28,#0x0 # if all unlocked, use vanilla mappings
-// bl SetGroundButtonDPadMapping # 0x80084cac
-// li r3,0x1E
-// li r4,0x6
-// li r5,0x0
-// li r6,0x0
-// li r7,0x0
-// li r8,0x0
-// bl SetButtonDPadMapping #0x8005b548
-// b 0x8008b3f0
-// build_custom_layout:
-// li r27,0x0 #iterator
-// li r28,0x0 # previous, previous
-// li r29,0x0 # previous
-// li r30,0x0 # last
-// build_dpad_layout_loop:
-// lis r4,0x8008 # otherwise, build our own dpad mappings
-// li  r5,0x52c0  # use table with colosseum flags left to
-// or r6,r3,r4  # right on the map
-// lbz r3,0x0(r6)
-// add r3,r3,r27
-// or  r31,r3,r3 # current
-// bl GetCurrentSaveSlotFlag
-// cmpwi r3,0x0
-// beq build_dpad_layout_loop_iter
-// subi r30,r31,0x2C
-// cmpwi r29,0x0
-// subieq r29,r31,0x2C
-// beq build_dpad_layout_loop_iter
-// or r3,r29,r29
-// li r4,0x0
-// or r5,r28,r28
-// subi r6,r31,0x2C
-// li r7,0x1E
-// li r8,0x0
-// bl SetButtonDPadMappingAt8044C258
-// or r28,r29,r29
-// or r29,r31,r31
-// build_dpad_layout_loop_iter:
-// addi r27,r27,0x1
-// cmpwi r27,0xA
-// ble build_dpad_layout_loop
-// or r3,r30,r30
-// li r4,0x0
-// or r5,r29,r29
-// li r6,0x0  # Set the rightmost button to only
-// li r7,0x1E # connect to the next left button.
-// SetButtonDPadMappingAt8044C258
-// or r3,0x1E
-// or r4,r30,r30
-// li r5,0x0
-// li r6,0x0 # Set the back button to only
-// li r7,0x0 # connect to the right most button.
-// SetButtonDPadMappingAt8044C258
-// b 0x8008b3f0
-
-// Table of colosseum flags in order left to right.
-// addr 0x800852c0
-// 0x3435302f
-// 0x2e362d31
-// 0x32330000
+// Magma (0x33) 
