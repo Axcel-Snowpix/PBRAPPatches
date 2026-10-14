@@ -185,14 +185,16 @@ build_dpad_layout_loop_iter:
 <memory offset="0x80084ff0" value="7F85E378" /> // or    r5,r28,r28
 <memory offset="0x80084ff4" value="38C00000" /> // li    r6,0x0
 <memory offset="0x80084ff8" value="38E0001E" /> // li    r7,0x1E
-<memory offset="0x80084ffc" value="4BFD654D" /> // bl    -0x29AB4 #SetButtonDPadMapping (0x8005b548)
-<memory offset="0x80085000" value="3860001E" /> // li    r3,0x1E
-<memory offset="0x80085004" value="7FC4F378" /> // or    r4,r30,r30
-<memory offset="0x80085008" value="38A00000" /> // li    r5,0x0
-<memory offset="0x8008500c" value="38C00000" /> // li    r6,0x0
-<memory offset="0x80085010" value="38E00000" /> // li    r7,0x0
-<memory offset="0x80085014" value="4BFD6535" /> // bl    -0x29ACC #SetButtonDPadMapping (0x8005b548)
-<memory offset="0x80085018" value="480063D8" /> // b     0x63D8 # (0x8008b3f0)
+<memory offset="0x80084ffc" value="39000000" /> // li    r8,0x0
+<memory offset="0x80085000" value="4BFD6549" /> // bl    -0x29AB8 #SetButtonDPadMapping (0x8005b548)
+<memory offset="0x80085004" value="3860001E" /> // li    r3,0x1E
+<memory offset="0x80085008" value="7FC4F378" /> // or    r4,r30,r30
+<memory offset="0x8008500c" value="38A00000" /> // li    r5,0x0
+<memory offset="0x80085010" value="38C00000" /> // li    r6,0x0
+<memory offset="0x80085014" value="38E00000" /> // li    r7,0x0
+<memory offset="0x80085018" value="39000000" /> // li    r8,0x0
+<memory offset="0x8008501C" value="4BFD652D" /> // bl    -0x29AD4 #SetButtonDPadMapping (0x8005b548)
+<memory offset="0x80085020" value="480063D0" /> // b     0x63D0 # (0x8008b3f0)
 
 // Empty Space
 
