@@ -1,0 +1,32 @@
+// Check Battlesanity Locations
+<memory offset="0x8007845c" value="4839DC51" /> // bl 0x39DC50 (0x804160ac)
+<memory offset="0x804160ac" value="9421fff0" /> // stwu r1,Stack[-0x10](r1)
+<memory offset="0x804160b0" value="7c0802a6" /> // mfspr r0,LR
+<memory offset="0x804160b4" value="90010014" /> // stw r0,Stack[0x4](r1)
+<memory offset="0x804160b8" value="808D81F8" /> // lwz r4,-0x7e08(r13) # PTR_DAT_806257f8
+<memory offset="0x804160bc" value="80640030" /> // lwz r3,0x30(r4) # PTR_8044fac0
+<memory offset="0x804160c0" value="8063000C" /> // lwz r3,0xc(r3) # Check if player is in a Colosseum
+<memory offset="0x804160c4" value="2C030000" /> // cmpwi r3,0x0
+<memory offset="0x804160c8" value="40820048" /> // bne 0x48 (0x80416110) # End function if not in a Colosseum
+<memory offset="0x804160cc" value="80640028" /> // lwz r3,0x28(r4)
+<memory offset="0x804160d0" value="2C030001" /> // cmpwi r3,0x1
+<memory offset="0x804160d4" value="4182003C" /> // beq 0x3c (0x80416110) # End function if battle ended in a loss
+<memory offset="0x804160d8" value="4BD09381" /> // bl 0xFFD09380 (0x8011f458) # GetSaveSlotField0x585ec
+<memory offset="0x804160dc" value="7C661B78" /> // mr r6,r3
+<memory offset="0x804160e0" value="80A60010" /> // lwz r5,0x10(r6) # Get current Colosseum ID
+<memory offset="0x804160e4" value="38A5FC18" /> // subi r5,r5,0x3e8
+<memory offset="0x804160e8" value="4BD4E101" /> // bl 0xFFD4E100 (0x801641e8) # GetCurrentSaveSlot
+<memory offset="0x804160ec" value="3C630007" /> // addis r3,r3,0x7
+<memory offset="0x804160f0" value="38639023" /> // subi r3,r3,0x6fdd
+<memory offset="0x804160f4" value="7C8518AE" /> // lbzx r4,r5,r3 # Get Battlesanity check value
+<memory offset="0x804160f8" value="A0C60016" /> // lhz r6,0x16(r6) # Get current battle number
+<memory offset="0x804160fc" value="38C6FFFF" /> // subi r6,r6,0x1
+<memory offset="0x80416100" value="38000001" /> // li r0,0x1
+<memory offset="0x80416104" value="7C003030" /> // slw r0,r0,r6
+<memory offset="0x80416108" value="7C860378" /> // or r6,r4,r0
+<memory offset="0x8041610c" value="7CC519AE" /> // stbx r6,r5,r3 # Store new Battlesanity check
+<memory offset="0x80416110" value="80010014" /> // lwz r0,Stack[0x4](r1)
+<memory offset="0x80416114" value="7c0803a6" /> // mtspr LR,r0
+<memory offset="0x80416118" value="38210010" /> // addi r1,r1,0x10
+<memory offset="0x8041611c" value="38000001" /> // li r0,0x1 # Original instruction
+<memory offset="0x80416120" value="4e800020" /> // blr
