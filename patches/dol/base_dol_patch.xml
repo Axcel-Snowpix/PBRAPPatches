@@ -160,6 +160,7 @@ build_dpad_layout_loop:
 <memory offset="0x80084f94" value="7CC6DA14" /> // add   r6,r6,r27
 <memory offset="0x80084f98" value="88660000" /> // lbz   r3,0x0(r6)
 <memory offset="0x80084f9C" value="7C7F1B78" /> // or    r31,r3,r3
+// TODO: Sunset/Courtyard Buttons Do NOT Match Flag Order
 <memory offset="0x80084fA0" value="480E261D" /> // bl    0xE261C #0x7C #GetCurrentSaveSlotFlag (0x801675bc)
 <memory offset="0x80084fA4" value="2C030000" /> // cmpwi r3,0x0 #0x80
 <memory offset="0x80084fA8" value="41820034" /> // beq   build_dpad_layout_loop_iter
@@ -203,8 +204,8 @@ build_dpad_layout_loop_iter:
 <memory offset="0x800852C4" value="2e362d31" /> // 2e, 36, 2d, 31
 <memory offset="0x800852C8" value="32330000" /> // 32, 33, XX, XX
 // Order Of Colosseums Left To Right:
-// Courtyard (0x34)
-// Sunset (0x35)
+// Courtyard (0x34) Button ID Swapped
+// Sunset (0x35) Button ID Swapped
 // Neon (0x30)
 // Waterfall (0x2F)
 // Main Street (0x2E)
