@@ -160,42 +160,47 @@ build_dpad_layout_loop:
 <memory offset="0x80084f94" value="7CC6DA14" /> // add   r6,r6,r27
 <memory offset="0x80084f98" value="88660000" /> // lbz   r3,0x0(r6)
 <memory offset="0x80084f9C" value="7C7F1B78" /> // or    r31,r3,r3
-// TODO: Sunset/Courtyard Buttons Do NOT Match Flag Order
 <memory offset="0x80084fA0" value="480E261D" /> // bl    0xE261C #0x7C #GetCurrentSaveSlotFlag (0x801675bc)
 <memory offset="0x80084fA4" value="2C030000" /> // cmpwi r3,0x0 #0x80
-<memory offset="0x80084fA8" value="41820034" /> // beq   build_dpad_layout_loop_iter
-<memory offset="0x80084fAC" value="3BDFFFD4" /> // subi  r30,r31,0x2C
-<memory offset="0x80084fB0" value="2C1D0000" /> // cmpwi r29,0x0
-<memory offset="0x80084fB4" value="41820024" /> // beq   build_dpad_layout_first_found_iter
-<memory offset="0x80084fb8" value="7FA3EB78" /> // or    r3,r29,r29
-<memory offset="0x80084fbc" value="38800000" /> // li    r4,0x0
-<memory offset="0x80084fc0" value="7F85E378" /> // or    r5,r28,r28
-<memory offset="0x80084fc4" value="7FC6F378" /> // or    r6,r30,r30
-<memory offset="0x80084fc8" value="38E0001E" /> // li    r7,0x1E
-<memory offset="0x80084fcc" value="39000000" /> // li    r8,0x0
-<memory offset="0x80084fd0" value="4BFD6579" /> // bl    -0x29A88 #SetButtonDPadMapping (0x8005b548)
-<memory offset="0x80084fd4" value="7FBCEB78" /> // or    r28,r29,r29
+<memory offset="0x80084fA8" value="41820048" /> // beq   build_dpad_layout_loop_iter
+<memory offset="0x80084fAC" value="2C1F0034" /> // cmpwi r31,0x34
+<memory offset="0x80084fB0" value="40820010" /> // bne   not_sunset_or_courtyard_colo
+<memory offset="0x80084fB4" value="2C1F0035" /> // cmpwi r31,0x35
+<memory offset="0x80084fb8" value="40820008" /> // bne   not_sunset_or_courtyard_colo
+<memory offset="0x80084fbc" value="6BFF0001" /> // xori  r31,r31,0x1
+not_sunset_or_courtyard_colo:
+<memory offset="0x80084fc0" value="3BDFFFD4" /> // subi  r30,r31,0x2C
+<memory offset="0x80084fc4" value="2C1D0000" /> // cmpwi r29,0x0
+<memory offset="0x80084fc8" value="41820024" /> // beq   build_dpad_layout_first_found_iter
+<memory offset="0x80084fcc" value="7FA3EB78" /> // or    r3,r29,r29
+<memory offset="0x80084fd0" value="38800000" /> // li    r4,0x0
+<memory offset="0x80084fd4" value="7F85E378" /> // or    r5,r28,r28
+<memory offset="0x80084fd8" value="7FC6F378" /> // or    r6,r30,r30
+<memory offset="0x80084fdc" value="38E0001E" /> // li    r7,0x1E
+<memory offset="0x80084fe0" value="39000000" /> // li    r8,0x0
+<memory offset="0x80084fe4" value="4BFD6565" /> // bl    -0x29A9C #SetButtonDPadMapping (0x8005b548)
+<memory offset="0x80084fe8" value="7FBCEB78" /> // or    r28,r29,r29
 build_dpad_layout_first_found_iter:
-<memory offset="0x80084fd8" value="7FDDF378" /> // or    r29,r30,r30
+<memory offset="0x80084fec" value="7FDDF378" /> // or    r29,r30,r30
 build_dpad_layout_loop_iter:
-<memory offset="0x80084fdc" value="3B7B0001" /> // addi  r27,r27,0x1
-<memory offset="0x80084fe0" value="2C1B000A" /> // cmpwi r27,0xA
-<memory offset="0x80084fe4" value="4180FFA4" /> // blt   build_dpad_layout_loop #0xC0
-<memory offset="0x80084fe8" value="7FC3F378" /> // or    r3,r30,r30
-<memory offset="0x80084fec" value="38800000" /> // li    r4,0x0
-<memory offset="0x80084ff0" value="7F85E378" /> // or    r5,r28,r28
-<memory offset="0x80084ff4" value="38C00000" /> // li    r6,0x0
-<memory offset="0x80084ff8" value="38E0001E" /> // li    r7,0x1E
-<memory offset="0x80084ffc" value="39000000" /> // li    r8,0x0
-<memory offset="0x80085000" value="4BFD6549" /> // bl    -0x29AB8 #SetButtonDPadMapping (0x8005b548)
-<memory offset="0x80085004" value="3860001E" /> // li    r3,0x1E
-<memory offset="0x80085008" value="7FC4F378" /> // or    r4,r30,r30
-<memory offset="0x8008500c" value="38A00000" /> // li    r5,0x0
-<memory offset="0x80085010" value="38C00000" /> // li    r6,0x0
-<memory offset="0x80085014" value="38E00000" /> // li    r7,0x0
-<memory offset="0x80085018" value="39000000" /> // li    r8,0x0
-<memory offset="0x8008501C" value="4BFD652D" /> // bl    -0x29AD4 #SetButtonDPadMapping (0x8005b548)
-<memory offset="0x80085020" value="480063D0" /> // b     0x63D0 # (0x8008b3f0)
+<memory offset="0x80084ff0" value="3B7B0001" /> // addi  r27,r27,0x1
+<memory offset="0x80084ff4" value="2C1B000A" /> // cmpwi r27,0xA
+<memory offset="0x80084ff8" value="4180FFA4" /> // blt   build_dpad_layout_loop #0xC0
+<memory offset="0x80084ffc" value="7FC3F378" /> // or    r3,r30,r30
+<memory offset="0x80085000" value="38800000" /> // li    r4,0x0
+<memory offset="0x80085004" value="7F85E378" /> // or    r5,r28,r28
+<memory offset="0x80085008" value="38C00000" /> // li    r6,0x0
+<memory offset="0x8008500c" value="38E0001E" /> // li    r7,0x1E
+<memory offset="0x80085010" value="39000000" /> // li    r8,0x0
+<memory offset="0x80085014" value="4BFD6535" /> // bl    -0x29ACC #SetButtonDPadMapping (0x8005b548)
+<memory offset="0x80085018" value="3860001E" /> // li    r3,0x1E
+<memory offset="0x8008501C" value="7FC4F378" /> // or    r4,r30,r30
+<memory offset="0x80085020" value="38A00000" /> // li    r5,0x0
+<memory offset="0x80085024" value="38C00000" /> // li    r6,0x0
+<memory offset="0x80085028" value="38E00000" /> // li    r7,0x0
+<memory offset="0x8008502C" value="39000000" /> // li    r8,0x0
+<memory offset="0x80085030" value="4BFD6519" /> // bl    -0x29AE8 #SetButtonDPadMapping (0x8005b548)
+<memory offset="0x80085034" value="480063BC" /> // b     0x63BC # (0x8008b3f0)
 
 // Empty Space
 
