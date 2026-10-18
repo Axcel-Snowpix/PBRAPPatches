@@ -185,7 +185,7 @@ build_dpad_layout_first_found_iter:
 build_dpad_layout_loop_iter:
 <memory offset="0x80084ff0" value="3B7B0001" /> // addi  r27,r27,0x1
 <memory offset="0x80084ff4" value="2C1B000A" /> // cmpwi r27,0xA
-<memory offset="0x80084ff8" value="4180FFA4" /> // blt   build_dpad_layout_loop #0xC0
+<memory offset="0x80084ff8" value="4180FF90" /> // blt   build_dpad_layout_loop #0xC0
 <memory offset="0x80084ffc" value="7FC3F378" /> // or    r3,r30,r30
 <memory offset="0x80085000" value="38800000" /> // li    r4,0x0
 <memory offset="0x80085004" value="7F85E378" /> // or    r5,r28,r28
