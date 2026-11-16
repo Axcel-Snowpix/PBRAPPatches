@@ -20,6 +20,9 @@
 // Remove Vanilla Post-Game Unlock
 <memory offset="0x8011584c" value="60000000" /> // nop
 
+// Allow Mysterial to Use his No DS Game Team Even With a TID and SID Higher than 0
+<memory offset="0x8007e350" value="60000000" /> // nop
+
 // Lock Gateway Colosseum from Being Selected With the Pointer
 <memory offset="0x8008f16c" value="3860002d" /> // li r3,0x2d
 <memory offset="0x8008f170" value="480d844d" /> // bl 0xd844c (GetCurrentSaveSlotFlag)
