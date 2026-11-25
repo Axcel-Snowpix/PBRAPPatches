@@ -367,7 +367,7 @@ def main():
     pokemon_list.sort()
     
     generated_file = open(generated_file_name + ".py", "w")
-    generated_file.write(generated_file_name + ": dict[int, dict[str, Any]] = {\n")
+    generated_file.write(generated_file_name + " = {\n")
     for pkmn in pokemon_list:
         generated_file.write(str(pkmn) + "\n")
     generated_file.write("}")
