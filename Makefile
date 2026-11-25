@@ -1,5 +1,6 @@
 WIT := wit
 BSDIFF := bsdiff
+PYTHON := python3
 
 # Currently, just causes the name to be changed when building the iso, but has
 # no effect on the name in Archipelago.
@@ -18,8 +19,12 @@ XML_PATCH_DOL := ap_pbr_patch.xml
 PATCH_DIR := ./patches
 DOL_PATCH_DIR := $(PATCH_DIR)/dol
 BSDIFF_PATCH_DIR := $(PATCH_DIR)/bsdiff
-DOL_PATCH_FILES := $(foreach file,$(wildcard $(DOL_PATCH_DIR)/*.xml),$(file))
-BSDIFF_PATCH_FILES := $(foreach file,$(wildcard $(BSDIFF_PATCH_DIR)/*.bsdiff),$(file))
+
+SETS_DIR := ./sets
+SUBSET_DIRS := $(wildcard $(SETS_DIR)/*)
+PK4_SETS := $(foreach subset_dir, $(SUBSET_DIRS), $(wildcard $(subset_dir)/*.pk4))
+PYTHON_SETS := $(foreach subset_dir, $(SUBSET_DIRS), $(notdir $(subset_dir)))
+PK4_TO_PY_SET := pk4_recombinator.py
 
 BSDIFF_OUT_DIR := ./BSDIFFS
 BSDIFF_DOL := $(BSDIFF_OUT_DIR)/$(notdir $(DOL_PATH)).bsdiff
@@ -50,6 +55,21 @@ bsdiffs: $(BSDIFF_OUT_DIR) $(BSDIFF_DOL)
 
 .PHONY: patched_iso
 patched_iso: $(ISO_OUT)
+
+.PHONY: fix_set_names
+fix_set_names: $(SUBSET_DIRS)
+
+# Trim any 'fat' from the pk4
+.PHONY: $(SUBSET_DIRS)
+$(SUBSET_DIRS):
+	rename -v -f 's/($(subst /,\/,$@)\/)(.{5}).*(\.pk4)/$$1$$2$$3/' $@/*.pk4
+
+$(PYTHON_SETS): $(SUBSET_DIRS)
+	echo Making Sets For: $@
+	@$(PYTHON) $(PK4_TO_PY_SET) $@ $(filter $(SETS_DIR)/$@/%.pk4, $(PK4_SETS))
+
+.PHONY: sets
+sets: $(PYTHON_SETS)
 
 .PHONY: clean
 clean:

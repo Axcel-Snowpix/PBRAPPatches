@@ -31,3 +31,8 @@
 *region.bin
 *boot.bin
 *fst.bin
+
+# Python
+*__pycache__
+*.py
+!pk4_recombinator.py
