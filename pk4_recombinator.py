@@ -331,7 +331,21 @@ class Gen4Pokemon:
 
     # TODO: Make the below line not so long.
     def __repr__(self):
-        return f"\t{self.species}: " "{'name': '" f"{self.nickname}', 'pid': {self.personality_value}, 'exp': {self.experience}, 'form': {(self.flagsB & 0b11111000) >> 3}, 'ivs': {self.ivs & 0x3FFFFFFF}, 'item': {self.held_item}, 'hp_ev': {self.hp_ev}, 'atk_ev': {self.atk_ev}, 'def_ev': {self.def_ev}, 'spe_ev': {self.spe_ev}, 'spa_ev': {self.spa_ev}, 'spd_ev': {self.spd_ev}" "}," 
+        return f"\t{self.species}: " "{'name': '" f"{self.nickname}'," \
+            f" 'pid': {self.personality_value}," \
+            f" 'exp': {self.experience}," \
+            f" 'form': {(self.flagsB & 0b11111000) >> 3}," \
+            f" 'ivs': {self.ivs & 0x3FFFFFFF}," \
+            f"'friendship': {self.friendship}," \
+            f" 'moves': [{self.move1}, {self.move2}, {self.move3}, {self.move4}]," \
+            f" 'item': {self.held_item}," \
+            f" 'hp_ev': {self.hp_ev}," \
+            f" 'atk_ev': {self.atk_ev}," \
+            f" 'def_ev': {self.def_ev}," \
+            f" 'spe_ev': {self.spe_ev}," \
+            f" 'spa_ev': {self.spa_ev}," \
+            f" 'spd_ev': {self.spd_ev}" \
+            "}," 
     
     def __eq__(self, other):
         return self.species == other.species
