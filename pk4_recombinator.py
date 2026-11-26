@@ -380,8 +380,8 @@ def main():
     
     pokemon_list.sort()
     
-    generated_file = open(generated_file_name + ".py", "w")
-    generated_file.write(generated_file_name + " = {\n")
+    generated_file = open(generated_file_name + "_sets.py", "w")
+    generated_file.write(generated_file_name + "_sets = {\n")
     for pkmn in pokemon_list:
         generated_file.write(str(pkmn) + "\n")
     generated_file.write("}")
