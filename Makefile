@@ -24,6 +24,7 @@ SETS_DIR := ./sets
 SUBSET_DIRS := $(wildcard $(SETS_DIR)/*)
 PK4_SETS := $(foreach subset_dir, $(SUBSET_DIRS), $(wildcard $(subset_dir)/*.pk4))
 PYTHON_SETS := $(foreach subset_dir, $(SUBSET_DIRS), $(notdir $(subset_dir)))
+CLEAN_SETS := $(foreach sets_name, $(PYTHON_SETS), $(sets_name)_sets.py)
 PK4_TO_PY_SET := pk4_recombinator.py
 
 BSDIFF_OUT_DIR := ./BSDIFFS
@@ -73,4 +74,4 @@ sets: $(PYTHON_SETS)
 
 .PHONY: clean
 clean:
-	rm -rf $(ISO_EXTRACT_DIR) $(ISO_PATCHED_DIR) $(BSDIFF_OUT_DIR) $(XML_PATCH_DOL) $(ISO_OUT)
+	rm -rf $(ISO_EXTRACT_DIR) $(ISO_PATCHED_DIR) $(BSDIFF_OUT_DIR) $(XML_PATCH_DOL) $(ISO_OUT) $(CLEAN_SETS)
