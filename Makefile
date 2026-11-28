@@ -65,7 +65,7 @@ fix_set_names: $(SUBSET_DIRS)
 $(SUBSET_DIRS):
 	rename -v -f 's/($(subst /,\/,$@)\/)(.{5}).*(\.pk4)/$$1$$2$$3/' $@/*.pk4
 
-$(PYTHON_SETS): $(SUBSET_DIRS)
+$(PYTHON_SETS):
 	echo Making Sets For: $@
 	@$(PYTHON) $(PK4_TO_PY_SET) $@ $(filter $(SETS_DIR)/$@/%.pk4, $(PK4_SETS))
 

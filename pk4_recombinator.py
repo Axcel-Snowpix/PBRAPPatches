@@ -336,7 +336,7 @@ class Gen4Pokemon:
             f" 'exp': {self.experience}," \
             f" 'form': {(self.flagsB & 0b11111000) >> 3}," \
             f" 'ivs': {self.ivs & 0x3FFFFFFF}," \
-            f"'friendship': {self.friendship}," \
+            f" 'friendship': {self.friendship}," \
             f" 'moves': [{self.move1}, {self.move2}, {self.move3}, {self.move4}]," \
             f" 'item': {self.held_item}," \
             f" 'hp_ev': {self.hp_ev}," \
@@ -344,7 +344,8 @@ class Gen4Pokemon:
             f" 'def_ev': {self.def_ev}," \
             f" 'spe_ev': {self.spe_ev}," \
             f" 'spa_ev': {self.spa_ev}," \
-            f" 'spd_ev': {self.spd_ev}" \
+            f" 'spd_ev': {self.spd_ev}," \
+            f" 'pokeball': {self.pokeball}" \
             "}," 
     
     def __eq__(self, other):
